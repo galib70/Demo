@@ -29,7 +29,7 @@
         }
 
         header img {
-            max-height: 50px; /* Adjust height based on design */
+            max-height: 80px; /* Adjust height based on design */
             width: auto;
         }
 
@@ -159,16 +159,18 @@
         }
 
         @media (max-width: 768px) {
-    .card {
-        max-width: 100%;
-        margin: 10px 5%;
-    }
-
-    /* Add top spacing only to the specific card */
-    .apply-new-card {
-        margin-top: 60%; /* Adjust this value as needed */
-    }
-}
+            .card {
+                max-width: 100%;
+                margin: 10px 5%;
+            }
+            header img {
+                max-height: 50px; /* Adjust height for smaller screens */
+            }
+            /* Adjust top spacing for specific card */
+            .apply-new-card {
+                margin-top: 60%; /* Adjust this value as needed */
+            }
+        }
 
         @media (max-width: 480px) {
             .card-title {
@@ -191,21 +193,24 @@
         }
 
         .card-content {
-            position: relative;
+            position: relative; /* Required for absolute positioning of the loader */
+            padding: 15px; /* Padding to ensure loader visibility */
         }
 
         .loader {
             border: 8px solid #f3f3f3; /* Light grey */
             border-top: 8px solid #004cd8; /* Blue */
             border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: spin 1s linear infinite;
+            width: 25px; /* Width of the loader */
+            height: 25px; /* Height of the loader */
+            position: absolute; /* Absolute positioning for centering */
+            top: 50%; /* Move down by 50% of the container height */
+            left: 34%; /* Move right by 50% of the container width */
+            transform: translate(-50%, -50%); /* Offset by 50% of the loader's dimensions to center it */
+            animation: spin 1s linear infinite; /* Spin animation */
             display: none; /* Hidden by default */
+            z-index: 10;
+             /* Ensure the loader is above other elements */
         }
 
         @keyframes spin {
@@ -244,7 +249,6 @@
 
     <div class="card-container">
         <!-- Card 1 -->
-<!-- Card 1 -->
         <div class="card apply-new-card">
             <div class="card-img-container">
                 <img src="img.webp" alt="Card image" class="card-img">
@@ -267,6 +271,7 @@
                 <div class="loader"></div>
             </div>
         </div>
+        
         <!-- Card 3 -->
         <div class="card">
             <div class="card-img-container">
@@ -278,6 +283,7 @@
                 <div class="loader"></div>
             </div>
         </div>
+        
         <!-- Card 4 -->
         <div class="card">
             <div class="card-img-container">
@@ -289,6 +295,7 @@
                 <div class="loader"></div>
             </div>
         </div>
+        
         <!-- Card 5 -->
         <div class="card">
             <div class="card-img-container">
@@ -300,6 +307,7 @@
                 <div class="loader"></div>
             </div>
         </div>
+        
         <!-- Card 6 -->
         <div class="card">
             <div class="card-img-container">
