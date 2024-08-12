@@ -6,196 +6,193 @@
     <title>Enhanced Design</title>
     <link rel="stylesheet" href="css/f.css">
     <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Light background color for contrast */
-}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background color for contrast */
+        }
 
-.navbar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: #004cd8;
-    padding: 15px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    height: 60px; /* Adjust the height if necessary */
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center the logo */
-}
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: #004cd8;
+            padding: 10px 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            height: 60px; /* Adjusted height for better mobile view */
+            display: flex;
+            align-items: center;
+        }
 
-.navbar-logo img {
-    height: 50px;
-}
+        .navbar-logo img {
+            height: 40px; /* Adjusted height for mobile */
+        }
 
-.slideshow-container {
-    position: relative; /* Changed to relative positioning */
-    width: 100%;
-    max-width: 1000px;
-    margin: 80px auto 20px; /* Adjust margin to account for navbar height */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    overflow: hidden;
-    background: #fff; /* Ensure slides are visible */
-    z-index: 900; /* Ensure it's below the navbar but above other content */
-    text-align: center; /* Center the text and slides */
-}
+        .slideshow-container {
+            position: relative; /* Changed to relative positioning */
+            width: 100%;
+            max-width: 1000px;
+            margin: 70px auto 20px; /* Adjusted margin to account for navbar height */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff; /* Ensure slides are visible */
+            z-index: 900; /* Ensure it's below the navbar but above other content */
+        }
 
-.slide {
-    display: none;
-}
+        .slide {
+            display: none;
+        }
 
-.fade {
-    animation: fade 1.5s ease-in-out;
-}
+        .fade {
+            animation: fade 1.5s ease-in-out;
+        }
 
-@keyframes fade {
-    from { opacity: 0.4; }
-    to { opacity: 1; }
-}
+        @keyframes fade {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
 
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 24px;
-    transition: 0.6s ease;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
-    user-select: none;
-}
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            user-select: none;
+            transform: translateY(-50%);
+        }
 
-.prev {
-    left: 10px;
-}
+        .prev {
+            left: 10px;
+        }
 
-.next {
-    right: 10px;
-}
+        .next {
+            right: 10px;
+        }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
 
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 20px;
-}
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
 
-.card {
-    max-width: 300px;
-    margin: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column; /* Ensures that content flows vertically */
-    height: auto; /* Allows the card to expand based on its content */
-    text-align: center; /* Center the text within the card */
-}
+        .card {
+            max-width: 300px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column; /* Ensures that content flows vertically */
+            height: auto; /* Allows the card to expand based on its content */
+        }
 
-.card-img-container {
-    width: 100%;
-    height: 200px; /* Adjust this if necessary */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .card-img-container {
+            width: 100%;
+            height: 200px; /* Adjust this if necessary */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.card-img {
-    width: 100%; /* Ensures the image covers the card width */
-    height: auto; /* Maintains the image aspect ratio */
-    display: block;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
+        .card-img {
+            width: 100%; /* Ensures the image covers the card width */
+            height: auto; /* Maintains the image aspect ratio */
+            display: block;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
 
-.card-content {
-    padding: 15px;
-    background-color: #fff; /* Ensures a clear background for the card content */
-    flex: 1; /* Allows this section to grow if needed */
-}
+        .card-content {
+            padding: 15px;
+            background-color: #fff; /* Ensures a clear background for the card content */
+            flex: 1; /* Allows this section to grow if needed */
+        }
 
-.card-title {
-    margin: 0;
-    font-size: 1.5em;
-    color: #333;
-    transition: color 0.3s ease;
-}
+        .card-title {
+            margin: 0;
+            font-size: 1.5em;
+            color: #333;
+            transition: color 0.3s ease;
+        }
 
-.card-content:hover .card-title {
-    color: #004cd8; /* Change color on hover */
-}
+        .card-content:hover .card-title {
+            color: #004cd8; /* Change color on hover */
+        }
 
-.card-btn {
-    background-color: #004cd8;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
+        .card-btn {
+            background-color: #004cd8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 10px; /* Added spacing above button */
+        }
 
-.card-btn:hover {
-    background-color: #003bb5;
-    transform: scale(1.05);
-}
+        .card-btn:hover {
+            background-color: #003bb5;
+            transform: scale(1.05);
+        }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .navbar-logo img {
-        height: 40px;
-    }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-logo img {
+                height: 35px;
+            }
 
-    .prev, .next {
-        padding: 12px;
-        font-size: 20px;
-    }
+            .prev, .next {
+                padding: 8px;
+                font-size: 18px;
+            }
 
-    .card {
-        max-width: 90%;
-        margin: 10px;
-    }
-}
+            .card {
+                max-width: 90%;
+                margin: 10px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .navbar-logo img {
-        height: 30px;
-    }
+        @media (max-width: 480px) {
+            .navbar-logo img {
+                height: 30px;
+            }
 
-    .prev, .next {
-        padding: 10px;
-        font-size: 18px;
-    }
+            .prev, .next {
+                padding: 6px;
+                font-size: 16px;
+            }
 
-    .card-title {
-        font-size: 1.2em;
-    }
+            .card-title {
+                font-size: 1.2em;
+            }
 
-    .card-btn {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-}
-
+            .card-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
     </style>
 </head>
 <body>
