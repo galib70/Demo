@@ -144,14 +144,16 @@
             background-color: #004cd8;
             color: white;
             border: none;
-            padding: 8px 16px;
-            font-size: 14px;
-            border-radius: 4px;
+            padding: 16px 32px; /* Increased padding for larger button size */
+            font-size: 18px; /* Increased font size */
+            border-radius: 8px; /* Larger border radius */
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
             align-self: center;
             margin-top: auto;
             position: relative;
+            width: 100%; /* Make button full width of the card */
+            box-sizing: border-box;
         }
 
         .card-btn:hover {
@@ -178,8 +180,8 @@
             }
 
             .card-btn {
-                font-size: 12px;
-                padding: 6px 12px;
+                font-size: 16px; /* Adjust font size for smaller screens */
+                padding: 12px 24px; /* Adjust padding for smaller screens */
             }
 
             header img {
@@ -205,12 +207,11 @@
             height: 25px; /* Height of the loader */
             position: absolute; /* Absolute positioning for centering */
             top: 50%; /* Move down by 50% of the container height */
-            left: 34%; /* Move right by 50% of the container width */
+            left: 50%; /* Move right by 50% of the container width */
             transform: translate(-50%, -50%); /* Offset by 50% of the loader's dimensions to center it */
             animation: spin 1s linear infinite; /* Spin animation */
             display: none; /* Hidden by default */
-            z-index: 10;
-             /* Ensure the loader is above other elements */
+            z-index: 10; /* Ensure the loader is above other elements */
         }
 
         @keyframes spin {
