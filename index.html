@@ -91,81 +91,84 @@
             gap: 20px;
         }
 
-       .card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    padding: 10px; /* Reduced padding */
-    height: 350px; /* Set a fixed height for the card */
-    box-sizing: border-box; /* Ensure padding is included in height */
-}
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            height: 350px;
+            box-sizing: border-box;
+            position: relative; /* Added for positioning loader */
+        }
 
-.card-img-container {
-    width: 100%;
-    height: 150px; /* Reduced height for the image container */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px; /* Reduced margin */
-}
+        .card-img-container {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-.card-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
+        .card-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
 
-.card-title {
-    margin: 10px 0; /* Reduced margin */
-    font-size: 1.2em; /* Slightly smaller font size */
-    color: #333;
-    transition: color 0.3s ease;
-}
+        .card-title {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #333;
+            transition: color 0.3s ease;
+        }
 
-.card-btn {
-    background-color: #004cd8;
-    color: white;
-    border: none;
-    padding: 8px 16px; /* Reduced padding */
-    font-size: 14px; /* Slightly smaller font size */
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    align-self: center;
-    margin-top: auto;
-}
+        .card-btn {
+            background-color: #004cd8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            align-self: center;
+            margin-top: auto;
+            position: relative;
+        }
 
-@media (max-width: 768px) {
-    .card {
-        max-width: 100%;
-        margin: 10px 5%;
-        height: auto; /* Allow height to adjust automatically */
-    }
-}
+        .card-btn:hover {
+            background-color: #003bb5;
+        }
 
-@media (max-width: 480px) {
-    .card-title {
-        font-size: 1.1em; /* Smaller font size for very small screens */
-    }
-
-    .card-btn {
-        font-size: 12px; /* Smaller font size for very small screens */
-        padding: 6px 12px; /* Reduced padding */
-    }
-}
-
+        @media (max-width: 768px) {
+            .card {
+                max-width: 100%;
+                margin: 10px 5%;
+                height: auto;
+            }
+        }
 
         @media (max-width: 480px) {
+            .card-title {
+                font-size: 1.1em;
+            }
+
+            .card-btn {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
             .navbar-logo img {
                 height: 30px;
             }
@@ -174,15 +177,40 @@
                 padding: 6px;
                 font-size: 16px;
             }
+        }
 
-            .card-title {
-                font-size: 1.2em;
-            }
+        .card-content {
+            position: relative;
+        }
 
-            .card-btn {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
+        .loader {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #004cd8; /* Blue */
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: spin 1s linear infinite;
+            display: none; /* Hidden by default */
+           
+
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .card-btn.animate {
+            animation: fadeOut 0.5s forwards;
         }
     </style>
 </head>
@@ -214,7 +242,8 @@
             </div>
             <div class="card-content">
                 <h2 class="card-title">Apply New Card</h2>
-                <button class="card-btn" onclick="window.location.href='data.html'">Click me!</button>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
             </div>
         </div>
         <div class="card">
@@ -223,7 +252,8 @@
             </div>
             <div class="card-content">
                 <h2 class="card-title">Rewards Point</h2>
-                <button class="card-btn" onclick="window.location.href='data.html'">Click me!</button>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
             </div>
         </div>
         <div class="card">
@@ -232,7 +262,8 @@
             </div>
             <div class="card-content">
                 <h2 class="card-title">Annual Charges</h2>
-                <button class="card-btn" onclick="window.location.href='data.html'">Click me!</button>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
             </div>
         </div>
         <div class="card">
@@ -241,7 +272,8 @@
             </div>
             <div class="card-content">
                 <h2 class="card-title">Limit Increase</h2>
-                <button class="card-btn" onclick="window.location.href='data.html'">Click me!</button>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
             </div>
         </div>
         <div class="card">
@@ -250,7 +282,8 @@
             </div>
             <div class="card-content">
                 <h2 class="card-title">Separate Merged Card</h2>
-                <button class="card-btn" onclick="window.location.href='data.html'">Click me!</button>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
             </div>
         </div>
         <div class="card">
@@ -259,7 +292,8 @@
             </div>
             <div class="card-content">
                 <h2 class="card-title">Instant Loan</h2>
-                <button class="card-btn" onclick="window.location.href='data.html'">Click me!</button>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
             </div>
         </div>
         <div class="card">
@@ -268,7 +302,8 @@
             </div>
             <div class="card-content">
                 <h2 class="card-title">Card Activation</h2>
-                <button class="card-btn" onclick="window.location.href='data.html'">Click me!</button>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
             </div>
         </div>
         <div class="card">
@@ -277,7 +312,18 @@
             </div>
             <div class="card-content">
                 <h2 class="card-title">Card Block</h2>
-                <button class="card-btn" onclick="window.location.href='data.html'">Click me!</button>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img-container">
+                <img src="img.webp" alt="Card image" class="card-img">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Card Unblock</h2>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
             </div>
         </div>
     </div>
@@ -314,6 +360,30 @@
         }
 
         showSlidesAuto(); 
+
+        function animateButton(button, url) {
+            // Find the loader element
+            const loader = button.parentElement.querySelector('.loader');
+
+            // Show loader
+            loader.style.display = 'block';
+
+            // Hide button and add animation class
+            button.classList.add('animate');
+
+            // Wait for animation to finish before redirecting
+            setTimeout(() => {
+                // Redirect to the URL
+                window.location.href = url;
+            }, 2000); // Duration of the loader animation
+
+            // Hide loader after 2 seconds
+            setTimeout(() => {
+                loader.style.display = 'none';
+                button.classList.remove('animate');
+            }, 2000);
+        }
     </script>
 </body>
 </html>
+
