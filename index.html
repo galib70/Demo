@@ -83,25 +83,32 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px;
-        }
+.card-content {
+    padding: 15px;
+    background-color: #fff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Center text within the card */
+}
 
-        .card {
-            max-width: 300px;
-            margin: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column; /* Ensures that content flows vertically */
-            height: auto; /* Allows the card to expand based on its content */
-        }
+.card-btn {
+    background-color: #004cd8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+    align-self: center; /* Center the button horizontally */
+}
 
         .card-img-container {
             width: 100%;
