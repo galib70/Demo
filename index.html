@@ -207,7 +207,7 @@
             height: 25px; /* Height of the loader */
             position: absolute; /* Absolute positioning for centering */
             top: 50%; /* Move down by 50% of the container height */
-            left: 50%; /* Move right by 50% of the container width */
+            left: 37%; /* Move right by 50% of the container width */
             transform: translate(-50%, -50%); /* Offset by 50% of the loader's dimensions to center it */
             animation: spin 1s linear infinite; /* Spin animation */
             display: none; /* Hidden by default */
@@ -361,12 +361,13 @@
             button.classList.add('animate');
             setTimeout(() => {
                 window.location.href = url;
-            }, 2000);
-            setTimeout(() => {
-                loader.style.display = 'none';
-                button.classList.remove('animate');
-            }, 2000);
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    button.classList.remove('animate');
+                }, 1000); // Hide loader after 1 second
+            }, 1000); // Delay the page redirection by 1 second
         }
+
     </script>
 </body>
 </html>
