@@ -8,9 +8,9 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding-top: 80px; /* Space for the fixed header */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding-top: 80px;
         }
 
         header {
@@ -20,34 +20,38 @@
             width: 100%;
             height: 80px;
             background-color: #4603d6;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #34495e;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         header img {
-            max-height: 80px; /* Adjust height based on design */
+            max-height: 50px;
             width: auto;
+            transition: all 0.3s ease;
         }
 
         .slideshow-container {
             position: fixed;
             width: 100%;
-            max-width: 1000px;
-            top: 80px; /* Space below the header */
+            max-width: 1200px;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
             margin: 0 auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
             overflow: hidden;
             background: #fff;
-            z-index: 999; /* Ensure slideshow is above other content */
+            z-index: 999;
         }
 
         .slide {
             display: none;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .fade {
@@ -64,169 +68,212 @@
             position: absolute;
             top: 50%;
             width: auto;
-            padding: 10px;
-            color: white;
+            padding: 15px;
+            color: rgb(255, 255, 255);
             font-weight: bold;
-            font-size: 20px;
-            transition: 0.6s ease;
+            font-size: 24px;
+            transition: 0.4s ease;
             border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: transparent;
             user-select: none;
             transform: translateY(-50%);
         }
 
-        .prev {
-            left: 10px;
-        }
-
-        .next {
-            right: 10px;
-        }
+        .prev { left: 15px; }
+        .next { right: 15px; }
 
         .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: transparent;
         }
 
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-            gap: 20px;
-            margin-top: 20px; /* Space below the slideshow */
-            position: relative;
-            z-index: 500; /* Ensure cards are below the slideshow */
-        }
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-top: 220px; /* Adjusted for the fixed slideshow */
+}
 
-        .card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 300px;
-            margin: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            padding: 10px;
-            height: auto; /* Remove fixed height */
-            box-sizing: border-box;
-            position: relative;
-        }
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    position: relative;
+}
 
-        .card-img-container {
-            width: 100%;
-            height: 150px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
 
-        .card-img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+.card-img-container {
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    position: relative;
+}
 
-        .card-title {
-            margin: 10px 0;
-            font-size: 1.2em;
-            color: #333;
-            transition: color 0.3s ease;
-        }
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
 
-        .card-btn {
-            background-color: #004cd8;
-            color: white;
-            border: none;
-            padding: 16px 32px; /* Increased padding for larger button size */
-            font-size: 18px; /* Increased font size */
-            border-radius: 8px; /* Larger border radius */
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            align-self: center;
-            margin-top: auto;
-            position: relative;
-            width: 100%; /* Make button full width of the card */
-            box-sizing: border-box;
-        }
+.card:hover .card-img {
+    transform: scale(1.1);
+}
 
-        .card-btn:hover {
-            background-color: #003bb5;
-        }
+.card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
 
-        @media (max-width: 768px) {
-            .card {
-                max-width: 100%;
-                margin: 10px 5%;
-            }
-            header img {
-                max-height: 50px; /* Adjust height for smaller screens */
-            }
-            /* Adjust top spacing for specific card */
-            .apply-new-card {
-                margin-top: 60%; /* Adjust this value as needed */
-            }
-        }
+.card-title {
+    margin: 0 0 10px;
+    font-size: 1.2em;
+    color: #0e0000;
+    font-weight: 600;
+    margin-top: 10px;
+}
 
-        @media (max-width: 480px) {
-            .card-title {
-                font-size: 1.1em;
-            }
+.card-btn {
+    background-color: #4603d6;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    align-self: center;
+    margin-top: auto;
+    width: 80%;
+}
 
-            .card-btn {
-                font-size: 16px; /* Adjust font size for smaller screens */
-                padding: 12px 24px; /* Adjust padding for smaller screens */
-            }
+.card-btn:hover {
+    background-color: #005291;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 103, 172, 0.3);
+}
 
-            header img {
-                max-height: 30px;
-            }
+.loader {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #0067ac;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-            .prev, .next {
-                padding: 6px;
-                font-size: 16px;
-            }
-        }
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
 
-        .card-content {
-            position: relative; /* Required for absolute positioning of the loader */
-            padding: 15px; /* Padding to ensure loader visibility */
-        }
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        padding: 15px;
+        margin-top: 180px; /* Adjusted for smaller screens */
+    }
 
-        .loader {
-            border: 8px solid #f3f3f3; /* Light grey */
-            border-top: 8px solid #004cd8; /* Blue */
-            border-radius: 50%;
-            width: 25px; /* Width of the loader */
-            height: 25px; /* Height of the loader */
-            position: absolute; /* Absolute positioning for centering */
-            top: 50%; /* Move down by 50% of the container height */
-            left: 37%; /* Move right by 50% of the container width */
-            transform: translate(-50%, -50%); /* Offset by 50% of the loader's dimensions to center it */
-            animation: spin 1s linear infinite; /* Spin animation */
-            display: none; /* Hidden by default */
-            z-index: 10; /* Ensure the loader is above other elements */
-        }
+    .card {
+        height: 300px;
+    }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    .card-img-container {
+        height: 55%;
+    }
 
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
+    .card-title {
+        font-size: 1.1em;
+    }
 
-        .card-btn.animate {
-            animation: fadeOut 0.5s forwards;
-        }
+    .card-btn {
+        padding: 10px 18px;
+        font-size: 13px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        grid-template-columns: 1fr;
+        margin-top: 160px; /* Further adjusted for mobile screens */
+    }
+
+    .card {
+        height: 280px;
+    }
+
+    .card-img-container {
+        height: 50%;
+    }
+
+    .card-title {
+        font-size: 1em;
+    }
+
+    .card-btn {
+        padding: 10px 16px;
+        font-size: 12px;
+        width: 100%;
+    }
+}
+
+/* Special styling for the "Apply New Card" */
+.card-apply-new-card {
+    grid-column: 1 / -1; /* Span full width on all screen sizes */
+    max-width: none;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 769px) {
+    .card-apply-new-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        height: 160px;
+    }
+
+    .card-apply-new-card .card-img-container {
+        height: 100%;
+    }
+
+    .card-apply-new-card .card-content {
+        padding: 20px;
+    }
+
+    .card-apply-new-card .card-title {
+        font-size: 1.5em;
+    }
+
+    .card-apply-new-card .card-btn {
+        width: auto;
+        padding: 15px 30px;
+        font-size: 16px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -249,8 +296,8 @@
     </div>
 
     <div class="card-container">
-        <!-- Card 1 -->
-        <div class="card apply-new-card">
+        <!-- Card 1 with top margin -->
+        <div class="card card-apply-new-card">
             <div class="card-img-container">
                 <img src="img.webp" alt="Card image" class="card-img">
             </div>
@@ -315,7 +362,19 @@
                 <img src="img.webp" alt="Card image" class="card-img">
             </div>
             <div class="card-content">
-                <h2 class="card-title">Apply New Card</h2>
+                <h2 class="card-title">Card Activation</h2>
+                <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
+                <div class="loader"></div>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="img.webp" alt="Card image" class="card-img">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Card Block</h2>
                 <button class="card-btn" onclick="animateButton(this, 'data.html')">Click me!</button>
                 <div class="loader"></div>
             </div>
@@ -350,7 +409,7 @@
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
             slides[slideIndex-1].style.display = "block";  
-            setTimeout(showSlidesAuto, 5000); // Change image every 5 seconds
+            setTimeout(showSlidesAuto, 3000); // Change image every 3 seconds
         }
 
         showSlidesAuto(); 
@@ -367,7 +426,6 @@
                 }, 1000); // Hide loader after 1 second
             }, 1000); // Delay the page redirection by 1 second
         }
-
     </script>
 </body>
 </html>
